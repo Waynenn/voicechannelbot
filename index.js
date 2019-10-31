@@ -16,22 +16,18 @@ fs.readdir("./commands/", (err, files) => {
 
 let prefix = '!'
 client.on('message', (msg) => {
-    if (msg.author.id !== "256883010970976257") return;
+    if (msg.author.id !== client.user.id) return;
 
     if (msg.content.startsWith(prefix)) {
         msg.delete()
     }
-    if (msg.author.bot) return;
 
-    // Ignore messages not starting with the prefix (in config.json)  
-    // Our standard argument/command name definition.
+
     const args = msg.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
   
-    // Grab the command data from the client.commands Enmap
     const cmd = client.commands.get(command);
   
-    // If that command doesn't exist, silently exit and do nothing
     if (!cmd) return;
   
     // Run the command
@@ -47,4 +43,4 @@ client.on('message', (msg) => {
 
 
 client.on('ready', () => void("helo"))
-client.login('NjMxMzc4MDc4ODIzNjEyNDMz.Xbo_Yg.DBx27vGukVHnLqlAKTZm8ITtchI')
+client.login('')
